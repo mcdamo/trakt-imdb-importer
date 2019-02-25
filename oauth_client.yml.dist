@@ -1,0 +1,7 @@
+{
+  client_id: '',
+  client_secret: '',
+  token_url: 'oauth/token',
+  site: 'https://api-v2launch.trakt.tv',
+  redirect_uri: 'urn:ietf:wg:oauth:2.0:oob'
+}

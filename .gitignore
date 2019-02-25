@@ -1,0 +1,5 @@
+.bundle
+.oauth_token
+oauth_client.yml
+vendor
+*.csv

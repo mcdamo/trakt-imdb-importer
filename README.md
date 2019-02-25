@@ -13,19 +13,10 @@ Warning: The author doesn't guarantee anything including the outcome of the runn
 
 ## Known issue
 * I Never check/tested ratings for individual episode of TV Shows.
-* If you rate a TV show on IMDB. it will mark all season as watched.
+* This script only copies ratings, the action to mark shows as watched has been removed.
+* ~~If you rate a TV show on IMDB. it will mark all season as watched.~~
 
-## Getting IMDB csv file.
-
-1. Login to IMDB
-2. Form "Your Name" drop down, select "Your Lists"
-3. Select "Your Ratings" list
-4. At the bottom of the page there is link "Export this list"
-5. Save the file on your computer
-
-## Using the script
-
-### installing
+## Installing
 
 clone the repository
 
@@ -41,12 +32,12 @@ to install [bundler](http://bundler.io/)
 
     # or with sudo
 
-    $ sudo gem install bundler
+    $ sudo gem install bundler -v 1.16.1
 
 
 after bundler is install, download dependency with
 
-    $ bundle
+    $ bundle install --path vendor/bundle
 
 ### Create Trakt.tv application
 
@@ -58,15 +49,30 @@ In order to use OAUTH, you need to create an application on trakt.tv
 4. Tick checking & scrobble
 5. Copy "Client ID" & "Client Secret"
 
+### Setting OAUTH client in script
+
+1. Copy `oauth_client.yml.dist` to `oauth_client.yml`
+2. Fill in "Client ID" & "Client Secret" from Trakt.tv application
+
+## Using the script
+
+### Getting IMDB csv file.
+
+1. Login to IMDB
+2. Form "Your Name" drop down, select "Your Lists"
+3. Select "Your Ratings" list
+4. At the bottom of the page there is link "Export this list"
+5. Save the file on your computer
+
 ### Run the application
 
-suppose you have the csv file name 'ratings-imdb.csv' in the same directory as the project
+suppose you have the csv file name 'imdb-ratings.csv' in the same directory as the project
 
 execute 
 
-    $ bundle exec ruby import.rb ratings-imdb.csv
+    $ bundle exec ruby import.rb imdb-ratings.csv
 
-1. it will ask for "Client ID" and "Client Secreet" you obtain erlier. Copy paste (and enter) for each value
-2. It will then ask you to open link in the browser. Login with your account and authorize the app.
-3. Copy the "OAUTH AUTHORIZATION CODE" to the terminal
-4. It will then post all the reatings & history (mark as watched) data from IMDB to trakt.
+1. On first use it will ask you to authorize:
+  a. then ask you to open link in the browser. Login with your account and authorize the app.
+  b. Copy the "OAUTH AUTHORIZATION CODE" to the terminal
+2. It will then post all the ratings data from IMDB to trakt.
